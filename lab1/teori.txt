@@ -1,0 +1,5 @@
+1. I parprogrammering finns det två roller och de är föraren och navigatören (som rally),
+föraren skriver kod och navigatören granskar koden och planerar en strategi för att lösa problemet.
+Det är alltså meningen att föraren ska fokusera på kod och på att göra en teoretisk lösning
+till en praktisk medan navigatören är den som ska hitta den teoretiska lösningen.
+
