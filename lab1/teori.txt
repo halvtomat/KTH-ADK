@@ -7,10 +7,29 @@ till en praktisk medan navigatören är den som ska hitta den teoretiska lösnin
 Indexfilen ska endast bli läst av en dator och behöver därför inte vara i text-format.
 Binärt format är fördelaktigt då datorn slipper översätta ASCII-koder och kan istället
 läsa datan direkt, samt att det binära formatet kräver mindre lagringsutrymme på disken.
-Ordet bör lagras tillsammans med indexeringen på något sätt (hashad version av ordet, i
-filnamnet kanske?).
+Ordet bör lagras tillsammans med indexeringen för att slippa leta upp ännu en fil på disken.
 
-3. 
+3. Binärt sökträd: 
+    Måna extra pekare som kommer ta plats. Svår att konstruera anpassat för fil.
+    Många lookups = långsamt att söka.
+
+Sorterad array:
+    Ganska måna lookups, kan bli långsamt. Enkel att konstruera och lagra på fil.
+    Kan enkelt få dålig minneskomplexitet om man har otur med antalet element.
+
+Hashtabell: 
+    Enkel att konstruera, svårt att göra bra hashfunktion som undviker kollision.
+    Dålig hashfunktion innebär dålig lookup, annars snabb lookup.
+    Kan väldigt enkelt få dålig minneskomplexitet om man har otur med antalet element.
+
+Trie:
+    Många lookups = långsam. Svår att konstruera och lagra på fil. 
+    Många pekare som kommer ta plats.
+
+Latmanshashning:
+    Enkel att konstruera, och lagra. Få lookups = snabb. Lättare hashning än hashtabell.
+    Potentiellt många kollisioner som gör den långsammare.
+
 
 4. konkordans: långt ord,
 aa: 2 bokstäver bör ej förekomma,
@@ -18,5 +37,20 @@ a: 1 bokstav bör ej förekomma,
 i: 1 bokstav bör förekomma,
 hej: 3 bokstäver bör förekomma,
 41234: siffror,
- : ett mallanslag,
+ : ett mellanslag,
 översätta: ovanliga tecken.
+
+
+A-filen-
+
+input <- sökord
+lower bound = hash(sökord.substr(0,3))
+upper bound = hash(sökord.substr(0,2) + (sökord[2]+1)
+
+
+I-filen-
+
+(bound = byte_offset)
+input <- lower bound,upper bound
+
+
