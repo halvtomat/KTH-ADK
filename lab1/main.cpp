@@ -6,5 +6,9 @@ using namespace std;
 
 
 int main(){
-    gen_index(cin);
+    if(gen_index(cin) == 0) return 0;
+    else{
+        cout << "BIG ERROR" << endl;
+        return 1;
+    } 
 }
