@@ -4,34 +4,26 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <map>
 
 using namespace std;
 
-class element{
-    private:
-        string word;
-        vector<u_int16_t> indices;
-    public:
-        element(string word, u_int16_t index){
-            word = word;
-            append(index);
-        }
-        void append(u_int16_t index){
-            indices.push_back(index);
-        }
-};
-
 int gen_index(std::istream &in){
-    vector<element> index_data;
+    map<string, vector<u_int32_t>> data_map;
     string s;
     
     while(getline(in, s)){
         int split = s.find(" ");
         string word = s.substr(0, split);
-        u_int16_t  index = stoi(s.substr(split+1,s.length()));
-
-        cout << word << endl;
-        cout << index << endl;
+        u_int32_t  index = stoi(s.substr(split+1,s.length()));
+        data_map[word].push_back(index);
+    }
+    for (auto elem : data_map){
+        cout << elem.first << " : ";
+        for(int i = 0; i < elem.second.size(); i++){
+            cout << elem.second[i] << " ";
+        }
+        cout << endl;
     }
 
     return 0;

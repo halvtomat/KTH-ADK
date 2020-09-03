@@ -1,12 +1,12 @@
 /*
  * tokenizer.c delar upp en text i sina ord och matar ut orden
- * omvandlade till små bokstäver, ett ord per rad följt av ordets
+ * omvandlade till smï¿½ bokstï¿½ver, ett ord per rad fï¿½ljt av ordets
  * teckenposition i texten. Ett ord definieras som en eller flera
- * på varandra följande bokstäver i det svenska alfabetet.
+ * pï¿½ varandra fï¿½ljande bokstï¿½ver i det svenska alfabetet.
  * Copyright Viggo Kann, viggo@nada.kth.se, 1999
  *
- * Lätt omhackad av Jakob Nordström 2003 för att klara tecken med accenter
- * (t.ex. á, è. ü osv.).
+ * Lï¿½tt omhackad av Jakob Nordstrï¿½m 2003 fï¿½r att klara tecken med accenter
+ * (t.ex. ï¿½, ï¿½. ï¿½ osv.).
  *
  */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 
  /* alfabet i Latin-1-ordning */
-#define ALPHABET "ABCDEFGHIJKLMNOPQRSTUVWXYZÄÅÖ"
+#define ALPHABET "ABCDEFGHIJKLMNOPQRSTUVWXYZï¿½ï¿½ï¿½"
 
 
 static unsigned char   u2l[256];
@@ -66,22 +66,22 @@ Initialize(void)
     }
 
     /*
-     * Nedan följer speciallösning för att klara accenterade tecken
+     * Nedan fï¿½ljer speciallï¿½sning fï¿½r att klara accenterade tecken
      *
      */
     
-    for (ch = 224; ch <= 227; ++ch) /* a med accent (utom å och ä) */
+    for (ch = 224; ch <= 227; ++ch) /* a med accent (utom ï¿½ och ï¿½) */
     {
 	u2l[ch +  - 'a' + 'A'] = u2l[ch] = 'a';
     }
     
-    ch = 230;			/* ae till ä */
-    u2l[ch +  - 'a' + 'A'] = u2l[ch] = 'ä';
+    ch = 230;			/* ae till ï¿½ */
+    u2l[ch +  - 'a' + 'A'] = u2l[ch] = 'ï¿½';
     
     ch = 231;			/* c med cedilj till c*/
     u2l[ch +  - 'a' + 'A'] = u2l[ch] = 'c';
     
-    for (ch = 232; ch <= 235; ++ch) /* e med accent (även é) */
+    for (ch = 232; ch <= 235; ++ch) /* e med accent (ï¿½ven ï¿½) */
     {
 	u2l[ch +  - 'a' + 'A'] = u2l[ch] = 'e';
     }
@@ -94,13 +94,13 @@ Initialize(void)
     ch = 241;			/* n med ~ rill n */
     u2l[ch +  - 'a' + 'A'] = u2l[ch] = 'n';
     
-    for (ch = 242; ch <= 245; ++ch) /* o med accent (förutom ö) */
+    for (ch = 242; ch <= 245; ++ch) /* o med accent (fï¿½rutom ï¿½) */
     {
 	u2l[ch +  - 'a' + 'A'] = u2l[ch] = 'o';
     }
     
-    ch = 248;			/* o genomskuret till ö */
-    u2l[ch +  - 'a' + 'A'] = u2l[ch] = 'ö'; 
+    ch = 248;			/* o genomskuret till ï¿½ */
+    u2l[ch +  - 'a' + 'A'] = u2l[ch] = 'ï¿½'; 
     
     for (ch = 249; ch <= 252; ++ch) /* u med accent */
     {
