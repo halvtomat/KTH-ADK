@@ -1,4 +1,8 @@
+#ifndef GEN_INDEX_H
+#define GEN_INDEX_H
+
 #include <iostream>
-#include <fstream>
 
 int gen_index(std::istream &in);
+
+#endif
