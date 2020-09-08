@@ -14,7 +14,7 @@ map<u_int32_t, u_int32_t> a_map;
 
 u_int32_t find_index(string s, int startPos){
     map<string, vector<u_int32_t>>::iterator it = i_map.begin();
-    advance(it, startPos);
+    //advance(it, startPos);
     u_int32_t offset = 0;
     for(it; it != i_map.end(); it++){
         if(it->first.substr(0,3) == s) break;

@@ -2,6 +2,7 @@
 *
 !*.*
 !*/
+!makefile
 
 #Ignore executable files used for testing
 *.out
