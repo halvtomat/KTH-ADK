@@ -16,9 +16,17 @@ u_int32_t find_index(string s, int startPos){
     map<string, vector<u_int32_t>>::iterator it = i_map.begin();
     advance(it, startPos);
     u_int32_t offset = 0;
-    for(it; it->first.substr(0,3) != s; it++)
+    for(it; it != i_map.end(); it++){
+        if(it->first.substr(0,3) == s) break;
+
+        cout << "IT-FIRST : " << it->first << endl;
+        cout << "S : " << s << endl;
+        cout << "SIZEOF : " << sizeof(it->first) + sizeof(it->second) << endl;
+
         offset += sizeof(it->first) + sizeof(it->second);
-    //cout << offset << endl;
+    }
+    if(it == i_map.end()) offset = startPos;
+    cout << offset << endl;
     return offset;
 }
 
@@ -58,12 +66,13 @@ int gen_index(std::istream &in){
             cout << elem.second[i] << " ";
         cout << endl;
     }*/
-    
+    /*
     cout << endl << endl << endl;
     cout << "------------A FILEN BÖRJAR HÄR------------------" << endl;
     cout << endl << endl << endl;
 
     for(auto elem : a_map)
         cout << elem.first << " : " << elem.second << endl;
+    */
     return 0;
 }
