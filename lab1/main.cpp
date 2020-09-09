@@ -1,14 +1,11 @@
-#include "gen_index.h"
+#include "gen_files.h"
 #include <iostream>
 #include <fstream>
 
-using namespace std;
-
-
 int main(){
-    if(gen_index(cin) == 0) return 0;
+    if(gen_files(std::cin) == 0) return 0;
     else{
-        cout << "BIG ERROR" << endl;
+        std::cout << "BIG ERROR" << std::endl;
         return 1;
     } 
 }

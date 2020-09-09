@@ -3,8 +3,8 @@ RM=rm -f
 
 make: main tokenizer
 
-main: main.o gen_index.o gen_hash.o
-	g++ main.o gen_index.o gen_hash.o -o main
+main: gen_hash.o gen_files.o main.o 
+	g++ main.o gen_files.o gen_hash.o -o main
 
 tokenizer: tokenizer.c
 	gcc tokenizer.c -o tokenizer
@@ -12,8 +12,8 @@ tokenizer: tokenizer.c
 main.o: main.cpp
 	g++ -c main.cpp
 
-gen_index.o: gen_index.cpp
-	g++ -c gen_index.cpp
+gen_files.o: gen_files.cpp
+	g++ -c gen_files.cpp
 
 gen_hash.o: gen_hash.cpp
 	g++ -c gen_hash.cpp
