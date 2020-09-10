@@ -10,7 +10,7 @@
 using namespace std;
 
 map<string, vector<u_int32_t>> i_map;
-u_int32_t a_map[22764] = {0}; //28^3 + 28^2 + 28
+u_int32_t a[22764] = {0}; //28^3 + 28^2 + 28
 
 void gen_i(std::istream &in){
     string s;
@@ -34,7 +34,7 @@ void gen_a_2_PUNKT_NOLL(){
             }
             hash = gen_hash(s);
         }else hash = gen_hash(it->first.substr(0,3));
-        if(a_map[hash] == 0) a_map[hash] = offset;
+        if(a[hash] == 0) a[hash] = offset;
         offset += it->first.size() + it->second.size()*sizeof(u_int32_t);
     }
 }
@@ -54,9 +54,8 @@ int gen_files(std::istream &in){
         for(int i = 0; i < it->second.size(); i++)
             i_fil.write((char *)&it->second[i], sizeof(u_int32_t));
     }
-    for(int i = 0; i < sizeof(a_map)/sizeof(u_int32_t); i++){
-        a_fil.write((char *)&i, sizeof(i));
-        a_fil.write((char *)&a_map[i], sizeof(u_int32_t));
+    for(int i = 0; i < sizeof(a)/sizeof(u_int32_t); i++){
+        a_fil.write((char *)&a[i], sizeof(u_int32_t));
     }
 
     i_fil.close();
