@@ -1,0 +1,44 @@
+1. Mathematical notation of partDist
+g(x,y,z,w) = {
+    1 if x[z-1] = y[w-1]
+    0 if x[z-1] != y[w-1]
+}
+f(x,y,z,0) = z
+f(x,y,0,w) = w
+f(x,y,z,w) = min(A|A = {
+    f(x,y,z-1,w-1) + g(x,y,z,w),
+    f(x,y,z-1,w) + 1,
+    f(x,y,z,w-1)+ 1
+})
+
+2. Matrix of partDist("labd,"blad",x,y) x,y = {0,1,2,3,4}
+M = [
+    [4,3,2,2,2]
+    [3,2,1,2,3]
+    [2,1,2,3,3]
+    [1,1,2,2,3]
+    [0,1,2,3,4]
+]
+
+3. Metoden partDist beräknar
+   hur många operationer som 
+   krävs för att ord1 = ord2
+
+4. n = {0,1,2,3,4,5}, f(n) = {1,4,19,94,481,2524}
+
+5. Ett steg uppåt i matrisen 
+   betyder lägg till en bokstav,
+   ett steg till höger betyder
+   ta bort en bokstav, ett steg
+   diagonalt betyder ändra en
+   bokstav. 
+
+6.
+
+7.
+
+8.
+
+9.
+
+10.
