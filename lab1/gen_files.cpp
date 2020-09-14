@@ -8,10 +8,18 @@
 #include <map>
 
 using namespace std;
-
+//initialize datastructures to contain data.
 map<string, vector<u_int32_t>> i_map;
 u_int32_t a[22764] = {0}; //28^3 + 28^2 + 28
 
+/**
+ * Function that picks out data from tokenizer output and
+ * stores it in a map. 
+ * 
+ * @param inputstream
+ * @return void
+ *
+ */
 void gen_i(std::istream &in){
     string s;
     while(getline(in, s)){
@@ -21,7 +29,11 @@ void gen_i(std::istream &in){
         i_map[word].push_back(index);
     }
 }
-
+/**
+ * Function that iterates through i_map in order to map the offset of i_map in a
+ * if the word in i_map is less than 3 chars function will extend it with 'a's.
+ * @return void
+ */
 void gen_a(){
     map<string, vector<u_int32_t>>::iterator it = i_map.begin();
     u_int32_t offset = 0;
@@ -38,8 +50,17 @@ void gen_a(){
         offset += sizeof(u_int8_t) + sizeof(u_int16_t) + it->first.size() + it->second.size()*sizeof(u_int32_t);
     }
 }
-
-
+/**
+ * Function that generates I_map and a, creates 2 different binary files (I-file and A-file)
+ * and iterates through I_map and starts with storing the size of the word in 8 bits followed by
+ * the length of the index vector in 16bits followed by the actual word and vector. 
+ * 
+ * To generate a_fil function iterates through a and stores the data in a_fil.
+ * 
+ * @param inputstream
+ * @return 0
+ * 
+*/
 int gen_files(std::istream &in){
     gen_i(in);
     gen_a();
