@@ -1,4 +1,4 @@
-1. Mathematical notation of partDist
+1.  Mathematical notation of partDist
 g(x,y,z,w) = {
     1 if x[z-1] = y[w-1]
     0 if x[z-1] != y[w-1]
@@ -11,7 +11,7 @@ f(x,y,z,w) = min(A|A = {
     f(x,y,z,w-1)+ 1
 })
 
-2. Matrix of partDist("labd,"blad",x,y) x,y = {0,1,2,3,4}
+2.  Matrix of partDist("labd,"blad",x,y) x,y = {0,1,2,3,4}
 M = [
     [4,3,2,2,2]
     [3,2,1,2,3]
@@ -20,25 +20,49 @@ M = [
     [0,1,2,3,4]
 ]
 
-3. Metoden partDist beräknar
-   hur många operationer som 
-   krävs för att ord1 = ord2
+3.  Metoden partDist beräknar
+    hur många operationer som 
+    krävs för att ord1 = ord2
 
-4. n = {0,1,2,3,4,5}, f(n) = {1,4,19,94,481,2524}
+4.  n = {0,1,2,3,4,5}, f(n) = {1,4,19,94,481,2524}
 
-5. Ett steg uppåt i matrisen 
-   betyder lägg till en bokstav,
-   ett steg till höger betyder
-   ta bort en bokstav, ett steg
-   diagonalt betyder ändra en
-   bokstav. 
+5.  Ett steg uppåt i matrisen 
+    betyder lägg till en bokstav,
+    ett steg till höger betyder
+    ta bort en bokstav, ett steg
+    diagonalt betyder ändra en
+    bokstav. 
 
-6.
+6.  
+int partDist(string s1, string s2){
+    int a[s1.length][s2.length]
+    for i, i < s1.length
+        a[i][0] = i
+    for i, i < s2.length
+        a[0][i] = i
+    for i in [1..s1.length]
+        for j in [1..s2.length]
+            a[i][j] = min(
+                a[i1-1][i2-1] + (s1[i1-1] == s2[i2-1] ? 1 : 0),
+                a[i1][i2-1] + 1,
+                a[i1-1][i2] + 1,
+            )
+    return a[s1.length][s2.length]
+}
 
-7.
+7.  O(N*M) N = length of first word M = lenght of second word
 
-8.
+8.  Matrix of partDist("labs,"blad",x,y) x,y = {0,1,2,3,4}
+M = [
+    [4,3,2,2,3]
+    [3,2,1,2,3]
+    [2,1,2,3,3]
+    [1,1,2,2,3]
+    [0,1,2,3,4]
+]
 
-9.
+9.  Endast sista elementet (M[N][N])
 
-10.
+10. Diagonalen är samma i n + 1 diagonaler
+    där n är antalet samma första bokstäver
+    Resten av matrisen kan skilja.
