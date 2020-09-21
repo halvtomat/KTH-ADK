@@ -1,0 +1,41 @@
+\documentclass[11pt]{article}
+\usepackage{listings}
+
+\title{DD2350 Övningsmästarprov 1, Kortaste texten}
+\date{2020-09-21}
+\author{Daniel Gustafsson}
+
+\begin{document}
+\pagenumbering{gobble}  
+\maketitle
+\newpage
+
+\section{Pseudokod}
+\begin{lstlisting}
+    int antalRader(int n, int len, int w[])
+    int rader = 1
+    int pos = 0
+
+    for(i = 0 to n)
+        pos+=w[i]
+        if(pos > len)
+            rader++
+            pos = w[i]
+        else pos++
+    return rader
+\end{lstlisting}
+\section{Tidskomplexitetsanalys}
+Enhetskostnaden för en iteration är O(1) och består av 3,
+eller i vissa iterationer 4, triviala operationer.
+
+Algoritmen kommer iterera igenom 0 - n utan undantag och 
+har därför en tidskomplexitet på O(n).
+\section{Korrekthetsanalys}
+För att bevisa algoritmens korrekthet kan man använda
+loop-invarianter. Exempel på loop-invarianter som stämmer
+för denna algoritm är att "rader" variabeln stämmer
+efter varje iteration. Det betyder alltså att "rader" har
+värdet av det optimala antalet rader för de orden 
+algoritmen har itererarat igenom hittills efter varje 
+iteration.
+\end{document}
