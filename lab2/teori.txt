@@ -43,9 +43,9 @@ int partDist(string s1, string s2){
     for i in [1..s1.length]
         for j in [1..s2.length]
             a[i][j] = min(
-                a[i1-1][i2-1] + (s1[i1-1] == s2[i2-1] ? 1 : 0),
-                a[i1][i2-1] + 1,
-                a[i1-1][i2] + 1,
+                a[i-1][j-1] + (s1[i-1] == s2[j-1] ? 1 : 0),
+                a[i][j-1] + 1,
+                a[i-1][j] + 1,
             )
     return a[s1.length][s2.length]
 }
