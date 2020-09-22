@@ -12,7 +12,8 @@
 
 \section{Pseudokod}
 \begin{lstlisting}
-    int antalRader(int n, int len, int w[])
+int antalRader(int n, int len, int w[])
+    if(n == 0) return 0
     int rader = 1
     int pos = 0
 
@@ -24,6 +25,11 @@
         else pos++
     return rader
 \end{lstlisting}
+\section{Algoritmen}
+Algortimen räknar rad för rad in ord tills antalet karaktärer
+är större än "len", då återställs "pos" till 0 och "rader"
+adderas med 1. Om antalet karaktärer är mindre eller likamed 
+len så adderas "pos" med 1 för att räkna med ett mellanslag.
 \section{Tidskomplexitetsanalys}
 Enhetskostnaden för en iteration är O(1) och består av 3,
 eller i vissa iterationer 4, triviala operationer.
@@ -40,4 +46,8 @@ algoritmen har itererarat igenom hittills efter varje
 iteration.
 Om ovanstående loop-invariant stämmer skulle det bevisa
 att algoritmen alltid returnerar det optimala antalet rader.
+
+\section{Notering}
+Vid lösning av denna uppgift fördes diskussion med Valerio akman, 
+Håkan Samanci \& Iza hedlund
 \end{document}
