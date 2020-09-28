@@ -1,0 +1,22 @@
+1. När vi använder BFS vill vi snabbt komma åt grannar till en nod.
+I en grannmatris behöver man gå igenom alla noder för varje nod för
+att hitta grannarna till den noden, detta innebär O(n*n) eller 
+O(n^2) komplexitet.
+
+När det istället implementeras med grannlistor kan vi hitta grannarna
+direkt i listan och komplexiteten blir då O(n+m).
+
+När det är en gles graf och m = O(n) så är det fortfarande O(n^2)
+för grannmatris och det blir O(2n) = O(n) för grannlista.
+
+2. I restflödesgrafen är det möjligt för flödet att gå tillbaka
+ett eller fler steg och därför bli längre än 3. 
+Maximala längden blir då n-1 där n är antalet hörn.
+
+3. Eftersom att algoritmen inte använder division utan endast
+addition och subtraktion av kantkapaciteterna och 
+kantkapaciteterna endast är heltal kommer också svaret
+att vara ett heltal.
+
+Om kantkapaciteterna är n istället för 1 så blir det fortfarande
+samma svar förutsatt att alla kantkapaciteterna har samma värde.
