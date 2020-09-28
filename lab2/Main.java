@@ -17,7 +17,6 @@ public class Main {
     }
 
     public static void main(String args[]) throws IOException {
-        // double start = System.currentTimeMillis();
         BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
         List<String> wordList = readWordList(stdin);
         String word;
@@ -26,7 +25,6 @@ public class Main {
             a[i][0] = i;
             a[0][i] = i;
         }
-        // double start2 = System.currentTimeMillis();
         while ((word = stdin.readLine()) != null) {
             ClosestWordsOptimized closestWords = new ClosestWordsOptimized(word, wordList, a);
             System.out.print(word + " (" + closestWords.getMinDistance() + ")");
@@ -34,10 +32,6 @@ public class Main {
                 System.out.print(" " + w);
             System.out.println();
         }
-        // double ClosestWordsTime = System.currentTimeMillis() - start2;
-        // double totalTime = System.currentTimeMillis() - start;
-        // System.out.println("ClosestWordsTime = " + ClosestWordsTime);
-        // System.out.println("totaltime = " + totalTime);
     }
 }
 

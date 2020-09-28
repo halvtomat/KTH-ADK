@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#This 
+#
 export LC_COLLATE=C
 make clean
 make
