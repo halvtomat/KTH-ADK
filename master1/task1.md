@@ -1,3 +1,5 @@
+<div style="text-align: right"> Daniel Gustafsson </div>
+<div style="text-align: right"> danielg8@kth.se </div>
 # Uppgift 1/ Task 1
 
 ## Pseudokod
