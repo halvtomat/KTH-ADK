@@ -3,10 +3,10 @@
 ## Pseudokod
 
     NumberOfOnes(v, lower, upper){
-        if(isZero(v,lower, upper)) return 0
-        if(lower >= upper) return 1
-        return NumberofOnes(v, lower, upper/2) +
-            NumberOfOnes(v, (upper/2)+1, upper)
+        if(lower == upper) return v[lower]
+        if(isZero(v, lower, upper)) return 0
+        return NumberofOnes(v, lower, (upper+lower)/2) +
+            NumberOfOnes(v, ((upper+lower)/2)+1, upper)
     }
 
 ### Enhetskostnad
