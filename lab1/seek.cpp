@@ -12,8 +12,8 @@ const int PRINT_LENGTH = 60;
 u_int32_t a[22764] = {0}; //28^3 + 28^2 + 28
 
 void print_konkordans(u_int32_t offset, int word_size, ifstream &korpus){
-    korpus.seekg(offset - PRINT_LENGTH/2 + word_size / 2);
-    string s (PRINT_LENGTH, 'a');
+    if(offset > PRINT_LENGTH/2) korpus.seekg(offset - PRINT_LENGTH/2 + word_size / 2);
+    string s (PRINT_LENGTH, ' ');
     korpus.read(&s[0], PRINT_LENGTH);
     replace(s.begin(), s.end(), '\n', ' ');
     cout << s << endl;
@@ -31,11 +31,10 @@ vector<u_int32_t> search(u_int32_t lower, u_int32_t upper, string s){
     ifstream i_fil = ifstream("/var/tmp/i_fil.bin", ios::binary);
     ifstream korpus = ifstream("./korpus");
     i_fil.seekg(lower);
-    int count = 0;
     vector<u_int32_t> v;
     while(i_fil.tellg() < upper){
         u_int8_t word_size = 0;
-        u_int16_t v_size = 0;
+        u_int32_t v_size = 0;
         i_fil.read(reinterpret_cast<char *>(&word_size), sizeof(word_size));
         i_fil.read(reinterpret_cast<char *>(&v_size), sizeof(v_size));
         string word = "";
@@ -43,12 +42,15 @@ vector<u_int32_t> search(u_int32_t lower, u_int32_t upper, string s){
         i_fil.read(&word[0], word.size());
         if(s == word){
             for(int j = 0; j < v_size; j++){
-                count++;
+                if(v_size > 20 && j == 20){
+                   cout << "Word Count = " << v_size << "\nDo you want to print the rest? (y/n)\n"; 
+                   if(getchar() != 121) break;
+                }
                 u_int32_t elem;
                 i_fil.read(reinterpret_cast<char *>(&elem), sizeof(u_int32_t));
                 print_konkordans(elem, word_size, korpus);
             }
-            cout << "Word Count = "<< count << endl;
+            cout << "Word Count = " << v_size << endl;
             break;
         }
 
