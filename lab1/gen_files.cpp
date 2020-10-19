@@ -84,16 +84,5 @@ int gen_files(std::istream &in){
     i_fil.close();
     a_fil.close();
 
-
-    ofstream i_fil_text = ofstream("./i_fil_text");
-    it = i_map.begin();
-    for(it; it != i_map.end(); it++){
-        i_fil_text << it->first << " ";
-        for(int i = 0; i < it->second.size(); i++)
-            i_fil_text << it->second[i] << " ";
-        i_fil_text << endl;
-    }
-    i_fil_text.close();
-
     return 0;    
 }
