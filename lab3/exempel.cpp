@@ -62,7 +62,6 @@ void readMaxFlowSolution() {
   }
 }
 
-
 void writeBipMatchSolution() {
   int x = 17, y = 4711, maxMatch = 0;
 
