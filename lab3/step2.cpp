@@ -14,7 +14,7 @@ int cap[2000][2000] = {};
 int real_flow[2000][2000] = {};
 vector<vector<int>> adj;
 vector<pair<int,int>> real_edge; 
-int n, kG, uG;
+int n, k, u;
 
 int bfs(int k, int u, vector<int>& path){
     fill(path.begin(), path.end(), -1);
@@ -39,7 +39,7 @@ int bfs(int k, int u, vector<int>& path){
 
 int max_flow(int k, int u){
     int flow = 0;
-    vector<int> path(10000);
+    vector<int> path(n);
     int new_flow;
 
     while(new_flow = bfs(k, u, path)){
@@ -57,37 +57,23 @@ int max_flow(int k, int u){
     return flow;
 }
 
-void solve_flow(){
-
-}
-
-void swap(int &a, int &b){
-    int temp = a;
-    a = b;
-    b = temp;
-}
-
 void init_graph(){
-    int v, k, u, e;
-    cin >> v >> k >> u >> e;
-    cout << v << "\n" << k << " " << u << " ";
-    n = v;
-    kG = k;
-    uG = u;
-    adj.resize(v);
+    int e;
+    cin >> n >> k >> u >> e;
+    cout << n << "\n" << k << " " << u << " ";
+
+    adj.resize(n);
     for(int i = 0; i < e; i++){
         int a, b, c;
         cin >> a >> b >> c;
-        //if(a > b) swap(a,b);
         adj[a-1].push_back(b-1);
-        //adj[b-1].push_back(a-1);
         cap[a-1][b-1] = c;
     }
 }
 
 int main(){
     init_graph();
-    int flow = max_flow(kG-1, uG-1);
+    int flow = max_flow(k-1, u-1);
     cout << flow << "\n" << real_edge.size() << "\n";
     for(int i = 0; i < real_edge.size(); i++){
         int a,b,c;
