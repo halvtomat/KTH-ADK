@@ -6,6 +6,7 @@
 using std::cin;
 using std::cout;
 using std::vector;
+using std::find;
 using std::queue;
 using std::pair;
 using std::min;
@@ -48,7 +49,11 @@ int max_flow(int k, int u){
         while(current != k){
             int prev = path[current];
             cap[prev][current] -= new_flow;
-            if(real_flow[current][prev] == 0)real_edge.push_back({prev, current});
+            if(real_flow[current][prev] == 0){
+                auto p = std::make_pair(prev,current);
+                if(find(real_edge.begin(), real_edge.end(), p) != real_edge.end())
+                real_edge.push_back({prev, current});
+            }
             cap[current][prev] += new_flow;
             real_flow[current][prev] += new_flow;
             current = prev;
@@ -67,7 +72,9 @@ void init_graph(){
         int a, b, c;
         cin >> a >> b >> c;
         adj[a-1].push_back(b-1);
+        adj[b-1].push_back(a-1);
         cap[a-1][b-1] = c;
+        cap[b-1][a-1] = 0;
     }
 }
 
