@@ -2,7 +2,7 @@
 
 Du ska i tre steg skriva ett program som får en bipartit graf som indata och producerar en matchning av maximal storlek som utdata genom att reducera (transformera) matchningsproblemet till flödesproblemet. Korrekthet och effektivitet testas genom att lösningarna på de tre stegen skickas till Kattis (Länkar till en externa sida.). För att klara labben ska du bli godkänd av Kattis på de tre stegen samt redovisa labben för en handledare. Kattis kontrollerar både att programmet gör rätt och att det löser problemet tillräckligt snabbt. Kattis klarar av programspråken Java, C, C++ och Python, men tidskraven i denna labb gör att vi avråder från Python.
 
-#### Steg 1: Reducera problemet till flödesproblemet
+## Steg 1: Reducera problemet till flödesproblemet
 
 Du ska skriva ett program som löser matchningsproblemet med hjälp av en svart låda som löser flödesproblemet. Programmet ska fungera enligt denna översiktliga programstruktur:
 
@@ -20,22 +20,22 @@ Ditt program ska lösa problemet effektivt. Kattis kommer att provköra programm
 
 Det finns ett programskelett för steg 1 i några olika språk på katalogen /afs/nada.kth.se/info/adk20/labb3/exempelprogram
 
-#### Steg 2: Lös flödesproblemet
+## Steg 2: Lös flödesproblemet
 
 Nu ska du skriva ett program som löser flödesproblemet. Programmet ska läsa indata från standard input och skriva lösningen till standard output. Se nedan hur in- och utdataformaten för flödesproblemet ser ut.
 
 Ditt program ska lösa problemet effektivt. Kattis kommer att provköra programmet på generella flödesgrafer på upp till 2000 hörn och 10000 kanter. Kattis känner till problemet som [https://kth.kattis.com/problems/oldkattis.adkmaxflow](oldkattis.adkmaxflow).
 
-#### Steg 3: Kombinera steg 1 & 2
+## Steg 3: Kombinera steg 1 & 2
 
 I steg 1 löste du matchningsproblemet med hjälp av en lösning till flödesproblemet. I steg 2 löste du flödesproblemet. Nu ska du kombinera dessa lösningar till ett enda program genom att byta ut kommunikationen av flödesinstansen över standard input och standard output till ett funktionsanrop. Programmet ska fortfarande läsa indata från standard input och skriva lösningen till standard output.
 
 Ditt program ska lösa problemet effektivt. Kattis kommer att provköra programmet på bipartita grafer på upp till (5000+5000) hörn och upp till 10000 kanter. Kattis känner till problemet som [https://kth.kattis.com/problems/oldkattis.adkbipmatch](oldkattis.adkbipmatch).
 
-###### Matchningsproblemet
+### Matchningsproblemet
 Givet en bipartit graf G = (X,Y,E) finn en maximal matchning.
 
-###### Indata
+### Indata
 
 Den första raden består av två heltal som anger antalet hörn i X respektive Y.
 Den andra raden består av ett tal som anger |E|, det vill säga antalet kanter i grafen.
@@ -56,7 +56,7 @@ Hörnen numreras från 1 och uppåt. Om man angett a hörn i X och b hörn i Y s
 
 Denna graf har alltså X = {1, 2} och Y = {3, 4, 5}. Kantmängden *E* innehåller kanterna (1, 3), (1, 4), (2, 3) och (2, 5).
 
-###### Utdata
+### Utdata
 
 Först skrivs en rad som är densamma som den första i indata, och därefter en rad med ett heltal som anger antalet kanter i den funna matchningen. Därefter skrivs en rad för varje kant som ingår i matchningen. Kanten beskrivs av ett talpar på samma sätt som i indata.
 
@@ -69,10 +69,10 @@ Först skrivs en rad som är densamma som den första i indata, och därefter en
 2 5
 ```
 
-###### Flödesproblemet
+### Flödesproblemet
 Givet en flödesgraf G = (V,E) finn ett maximalt flöde. Lös flödesproblemet med Edmonds-Karps algoritm, det vill säga Ford-Fulkersons algoritm där den kortaste stigen hittas med breddenförstsökning.
 
-###### Ford-Fulkersons algoritm i pseudokod
+### Ford-Fulkersons algoritm i pseudokod
 
 c[u,v] är kapaciteten från u till v, f[u,v] är flödet, cf[u,v] är restkapaciteten.
 
@@ -87,7 +87,7 @@ while det finns en stig p från s till t i restflödesgrafen do
          cf[u,v]:=c[u,v] - f[u,v]; cf[v,u]:=c[v,u] - f[v,u]
 ```
 
-###### Indata
+### Indata
 
 Den första raden består av ett heltal som anger antalet hörn i V.
 Den andra raden består av två heltal s och t som anger vilka hörn som är källa respektive utlopp.
@@ -109,7 +109,7 @@ Hörnen numreras från 1 och uppåt. Om man angett a hörn i V så låter vi V =
 3 4 1
 ```
 
-###### Utdata
+### Utdata
 
 Den första raden består av ett heltal som anger antalet hörn i V.
 Den andra raden består av tre heltal s,t, samt flödet från s till t.

@@ -47,7 +47,7 @@ void gen_a(){
             hash = gen_hash(s);
         }else hash = gen_hash(it->first.substr(0,3));
         if(a[hash] == 0 && hash != 0) a[hash] = offset;
-        offset += sizeof(u_int8_t) + sizeof(u_int16_t) + it->first.size() + it->second.size()*sizeof(u_int32_t);
+        offset += sizeof(u_int8_t) + sizeof(u_int32_t) + it->first.size() + it->second.size()*sizeof(u_int32_t);
     }
 }
 /**
@@ -71,9 +71,9 @@ int gen_files(std::istream &in){
     map<string, vector<u_int32_t>>::iterator it = i_map.begin();
     for(it; it != i_map.end(); it++){
         u_int8_t s_size = (u_int8_t)it->first.size();
-        u_int16_t v_size = (u_int16_t)it->second.size();
+        u_int32_t v_size = (u_int32_t)it->second.size();
         i_fil.write((char *) &s_size, sizeof(u_int8_t));
-        i_fil.write((char *) &v_size, sizeof(u_int16_t));
+        i_fil.write((char *) &v_size, sizeof(u_int32_t));
         i_fil.write(it->first.c_str(), it->first.size());
         for(int i = 0; i < it->second.size(); i++)
             i_fil.write((char *)&it->second[i], sizeof(u_int32_t));
@@ -84,5 +84,5 @@ int gen_files(std::istream &in){
     i_fil.close();
     a_fil.close();
 
-    return 0;
+    return 0;    
 }
