@@ -2,6 +2,7 @@
 #include <vector>
 #include <queue>
 #include <unistd.h>
+#include <algorithm>
 
 using std::cin;
 using std::cout;
@@ -9,6 +10,7 @@ using std::vector;
 using std::find;
 using std::queue;
 using std::pair;
+using std::make_pair;
 using std::min;
 
 int cap[2000][2000] = {};
@@ -50,9 +52,11 @@ int max_flow(int k, int u){
             int prev = path[current];
             cap[prev][current] -= new_flow;
             if(real_flow[current][prev] == 0){
-                auto p = std::make_pair(prev,current);
-                if(find(real_edge.begin(), real_edge.end(), p) != real_edge.end())
-                real_edge.push_back({prev, current});
+                auto p = make_pair(current, prev);
+                if(int i = find(real_edge.begin(), real_edge.end(), p) != real_edge.end()) 
+                    real_edge.erase(real_edge.begin() + i);
+		        else 
+                    real_edge.push_back({prev, current});
             }
             cap[current][prev] += new_flow;
             real_flow[current][prev] += new_flow;
