@@ -51,15 +51,26 @@ int max_flow(int k, int u){
         while(current != k){
             int prev = path[current];
             cap[prev][current] -= new_flow;
+            cap[current][prev] += new_flow;
             if(real_flow[current][prev] == 0){
-                auto p = make_pair(current, prev);
-                if(int i = find(real_edge.begin(), real_edge.end(), p) != real_edge.end()) 
-                    real_edge.erase(real_edge.begin() + i);
-		        else 
+                real_flow[prev][current] += new_flow;
+                if(real_flow[prev][current] == 0)
                     real_edge.push_back({prev, current});
             }
-            cap[current][prev] += new_flow;
-            real_flow[current][prev] += new_flow;
+            else{
+                if(real_flow[current][prev] > new_flow)
+                    real_flow[current][prev] -= new_flow;
+                else{
+                    auto p = make_pair(current, prev);
+                    int i = find(real_edge.begin(), real_edge.end(), p);
+                }
+                
+                /*if( != real_edge.end())
+                    if(real_flow[current][prev] == new_flow){
+                       real_edge.erase(real_edge.begin() + i);
+
+                    }*/
+            }
             current = prev;
         }
     }
@@ -90,7 +101,7 @@ int main(){
         int a,b,c;
         a = real_edge[i].first;
         b = real_edge[i].second;
-        c = real_flow[b][a];
+        c = real_flow[a][b];
         cout << a+1 << " " << b+1 << " " << c << "\n";
     }
     return 0;
