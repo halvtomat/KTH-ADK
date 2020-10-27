@@ -5,8 +5,7 @@ make step2
 
 while [ "$?" -eq 0 ]
 do
-    ./flowgen 6 18 10 > test_auto
-    sleep 0.001
+    ./flowgen 5 15 1 > test_auto
     DIFF=$(cmp <(head <(./maxflow < test_auto) -n 3) <(head <(./step2 < test_auto) -n 3))
 done
 clear

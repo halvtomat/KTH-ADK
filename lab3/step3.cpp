@@ -14,13 +14,13 @@ using std::remove;
 using std::make_pair;
 using std::min;
 
-int cap[2000][2000] = {};
-int real_flow[2000][2000] = {};
+int x, y, k, u, n, f;
+int cap[10000][10000] = {};
+int real_flow[10000][10000] = {};
 vector<vector<int>> adj;
-vector<pair<int,int>> real_edge; 
-int n, k, u;
+vector<pair<int,int>> real_edge;
 
-int bfs(int k, int u, vector<int>& path){
+int bfs(vector<int>& path){
     fill(path.begin(), path.end(), -1);
     path[k] = -2;
     queue<pair<int,int>> q;
@@ -42,12 +42,12 @@ int bfs(int k, int u, vector<int>& path){
     return 0;
 }
 
-int max_flow(int k, int u){
+void max_flow(){
     int flow = 0;
     vector<int> path(n);
     int new_flow;
 
-    while(new_flow = bfs(k, u, path)){
+    while(new_flow = bfs(path)){
         flow += new_flow;
         int current = u;
 
@@ -77,41 +77,58 @@ int max_flow(int k, int u){
             current = prev;
         }
     }
-    return flow;
+    f = flow;
 }
 
-void init_graph(){
+void add_edge(int a, int b, int c){
+    if(find(adj[a].begin(), adj[a].end(), b) != adj[a].end()){
+        cap[a][b] = c;
+    }
+    else{
+        adj[a].push_back(b);
+        adj[b].push_back(a);
+        cap[a][b] = c;
+        cap[b][a] = 0;
+    }
+}
+
+void reduce_to_flow(){
     int e;
-    cin >> n >> k >> u >> e;
-    cout << n << "\n" << k << " " << u << " ";
+    cin >> x >> y >> e;
+    k = 0;
+    u = x + y + 1;
+    n = x + y + 2;
 
     adj.resize(n);
+
     for(int i = 0; i < e; i++){
-        int a, b, c;
-        cin >> a >> b >> c;
-        if(find(adj[a-1].begin(), adj[a-1].end(), b-1) != adj[a-1].end()){
-            cap[a-1][b-1] = c;
-        }
-        else{
-            adj[a-1].push_back(b-1);
-            adj[b-1].push_back(a-1);
-            cap[a-1][b-1] = c;
-            cap[b-1][a-1] = 0;
-        }
+        int a, b;
+        cin >> a >> b;
+        add_edge(a,b,1);
     }
+    for(int i = 1; i < x+1; i++)
+        add_edge(k,i,1);
+    for(int i = 1; i < y+1; i++)
+        add_edge(x+i,u,1);
 }
 
-int main(){
-    init_graph();
-    int flow = max_flow(k-1, u-1);
-    sort(real_edge.begin(), real_edge.end());
-    cout << flow << "\n" << real_edge.size() << "\n";
-    for(int i = 0; i < real_edge.size(); i++){
-        int a,b,c;
-        a = real_edge[i].first;
-        b = real_edge[i].second;
-        c = real_flow[a][b];
-        cout << a+1 << " " << b+1 << " " << c << "\n";
+void flow_to_match() {
+    cout << x << " " << y << "\n" << f << "\n";
+
+    for (int i = 0; i < real_edge.size(); i++) {
+        int a = real_edge[i].first;
+        int b = real_edge[i].second;
+        if(a != k && b != u) cout << a << " " << b << "\n";
     }
+    cout.flush();
+}
+
+int main(int argc, char const *argv[]){
+    std::ios::sync_with_stdio(false);
+    cin.tie(0);
+    reduce_to_flow();
+    max_flow();
+    sort(real_edge.begin(), real_edge.end());
+    flow_to_match();
     return 0;
 }
