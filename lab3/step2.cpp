@@ -69,7 +69,7 @@ int max_flow(int k, int u){
                     real_edge.erase(remove(real_edge.begin(), real_edge.end(), p), real_edge.end());
                     if(real_flow[current][prev] < new_flow){
                         real_edge.push_back({prev, current});
-                        real_flow[prev][current] = new_flow;
+                        real_flow[prev][current] = new_flow - real_flow[current][prev];
                     }
                     real_flow[current][prev] = 0;
                 }
@@ -89,9 +89,8 @@ void init_graph(){
     for(int i = 0; i < e; i++){
         int a, b, c;
         cin >> a >> b >> c;
-        if(find(adj[a-1].begin(), adj[a-1].end(), b-1) != adj[a-1].end()){
+        if(find(adj[a-1].begin(), adj[a-1].end(), b-1) != adj[a-1].end())
             cap[a-1][b-1] = c;
-        }
         else{
             adj[a-1].push_back(b-1);
             adj[b-1].push_back(a-1);
