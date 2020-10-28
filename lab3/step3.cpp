@@ -69,7 +69,7 @@ void max_flow(){
                     real_edge.erase(remove(real_edge.begin(), real_edge.end(), p), real_edge.end());
                     if(real_flow[current][prev] < new_flow){
                         real_edge.push_back({prev, current});
-                        real_flow[prev][current] = new_flow;
+                        real_flow[prev][current] = new_flow - real_flow[current][prev];
                     }
                     real_flow[current][prev] = 0;
                 }
