@@ -9,10 +9,11 @@ using namespace std;
 
 const int PRINT_LENGTH = 60;
 
-u_int32_t a[22764] = {0}; //28^3 + 28^2 + 28
+u_int32_t a[22765] = {0}; //28^3 + 28^2 + 28 + 1
 
 void print_konkordans(u_int32_t offset, int word_size, ifstream &korpus){
     if(offset > PRINT_LENGTH/2) korpus.seekg(offset - PRINT_LENGTH/2 + word_size / 2);
+    if(offset + PRINT_LENGTH/2 > 79506700) korpus.seekg(offset - PRINT_LENGTH + word_size);
     string s (PRINT_LENGTH, ' ');
     korpus.read(&s[0], PRINT_LENGTH);
     replace(s.begin(), s.end(), '\n', ' ');
@@ -62,15 +63,12 @@ vector<u_int32_t> search(u_int32_t lower, u_int32_t upper, string s){
     return v;
 }
 
-/**
- * 
- * 
- */
 u_int32_t find_upper(string s){
     u_int32_t upper = gen_hash(s)+1;
     while(a[upper] == 0 && upper < sizeof(a)/sizeof(u_int32_t)){
         upper++;
     }
+    if(upper == sizeof(a)/sizeof(u_int32_t)) return 22765;
     return upper;
 }
 
@@ -95,6 +93,7 @@ void load_a(){
         a_fil.read((char *)&a[i], sizeof(u_int32_t));
     }
     a_fil.close();
+    a[22765] = 56961858;
 }
 
 int main(int argc, char const *argv[]){

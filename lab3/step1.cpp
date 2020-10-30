@@ -10,7 +10,7 @@ void reduce_to_flow(){
     cin >> x >> y >> e;
     k = 1;
     u = x + y + 2;
-    cout << u << "\n" << k << " " << u << "\n" << x+y+e << "\n";
+    cout << x+y+2 << "\n" << k << " " << u << "\n" << x+y+e << "\n";
 
     for(int i = 0; i < e; i++){
         int a, b;
