@@ -22,13 +22,16 @@ Antalet skådespelare som behövs för att fylla alla roller i en film.
 Superskådisarna gör problemet enkelt lösbart (lika många superskådisar som roller löser problemet) och gör så att vi kan fokusera på att göra lösningen så bra som möjligt istället för att hitta en optimal lösning direkt (finns ingen känd algoritm som kan lösa problemet optimalt).
 
 ### 4
-
+En lokal modifiering hade kunnat vara att byta ut en superskådis mot en vanlig skådis (som enligt reglerna kan fylla den rollen) i en roll.
 
 ### 5
+Det kan till leda till att exempelvis en vanlig skådis blockerar en annan vanlig skådis ifrån en roll där den andra skådisen hade varit en bättre kandidat för rollen.
 
 ### 6
+Simulated annealing skulle kunna vara att man i början tillåter vanliga skådisar att byta med varandra och då undviks mitt resonemang i fråga 5.
 
 ### 7
 Man bör sluta göra lokala modifieringar när antingen lösningen anses vara optimal *eller* när en maxtid är uppnådd (för att undvika att algoritmen aldrig avslutas).
 
 ### 8
+Om slump införs i en heuristik så finns möjlighet att hitta varianter av lösningar som annars inte hade upptäckts, detta kan vara en bra startpunkt för en bättre lösning.
