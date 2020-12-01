@@ -1,12 +1,16 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <random>
 
 using std::cin;
 using std::cout;
 using std::pair;
 using std::vector;
 using std::find;
+using std::shuffle;
+using std::default_random_engine;
+using std::random_device;
 
 int n, s, k;                 // n = antal roller, s = antal scener, k = antal skådespelare
 vector<vector<int>> roles;   // GLÖM INTE 0 INDEX
@@ -87,14 +91,23 @@ void solve(){
         if(actors[1].empty() == false)
             break;
     }
-
+    vector<int> shuffled;
+    default_random_engine engine(random_device{}());
+    auto rng = engine;
     for(int i = 0; i < roles.size(); i++){
-        for(int j = 0; j < roles[i].size(); j++){
-            int actor_nr = roles[i][j];
+        shuffled = roles[i];
+        shuffle(shuffled.begin(), shuffled.end(), rng);
+        for(int j = 0; j < shuffled.size(); j++){
+            int actor_nr = shuffled[j];
+            if(actor_nr == -1)
+                continue;
             if(actor_check(actor_nr, i+1)){
                 actors[actor_nr].push_back(i);
                 roles[i].clear();
-            }
+                break;
+            }else{
+                shuffled[j] = -1;
+            } 
         }
     }
 
