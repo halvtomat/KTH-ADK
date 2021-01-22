@@ -55,7 +55,7 @@ nej-instans av *Tröttrobotproblemet*:
     0 0 0 0 0
     3
 
-En Karpreduktion av *Delmängdssummaproblemet* till *Tröttrobotproblemet* skulle vara följande:
+En Karpreduktion av *Delmängdssummaproblemet* till *Tröttrobotproblemet* skulle kunna vara följande:
 
 - Skapa en kvadratisk matris med storlek *n* + 2.
 - Fyll rad 0 och rad *n* med nollor.

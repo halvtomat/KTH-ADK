@@ -44,7 +44,7 @@ bool role_check(int d1, int d2){ //True if roles dont play against each other, o
     return true;
 }
 
-bool actor_check(int actor, int role){ // 
+bool actor_check(int actor, int role){ 
     if(actor == 1 || actor == 2){
         for(int i = 0; i < actors[1].size(); i++){
             if(role_check(actors[1][i]+1, role) == false)
